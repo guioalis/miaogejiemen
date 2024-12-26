@@ -6,5 +6,5 @@
 
 你可以直接通过Vercel部署本项目
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/guioalis/xmiaoai)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/guioalis/miaogejiemen)
 
