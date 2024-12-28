@@ -1,4 +1,4 @@
-import { Moon, Brain, Heart, Star } from 'lucide-react';
+import { Brain, Heart, Star } from 'lucide-react';
 import { Theme } from '../types';
 
 interface AboutProps {
@@ -8,16 +8,6 @@ interface AboutProps {
 export const About = ({ theme }: AboutProps) => {
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <div className="text-center mb-12">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Moon className="w-12 h-12 text-purple-600 dark:text-purple-400" />
-          <h1 className="text-4xl font-bold text-gray-800 dark:text-white">喵哥解梦</h1>
-        </div>
-        <p className="text-lg text-gray-600 dark:text-gray-300">
-          探索梦境的奥秘，寻找内心的答案
-        </p>
-      </div>
-
       <div className="space-y-8">
         <section className={`p-6 rounded-xl ${
           theme === 'dark' ? 'bg-gray-800' : 'bg-white'
