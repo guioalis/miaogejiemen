@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*' # 当推送 v 开头的tag时触发，如 v1.0.0
+      - 'v*'
 
 jobs:
   build:
@@ -26,6 +26,12 @@ jobs:
         run: |
           npm install
           npm install -g @electron-forge/cli
+
+      - name: Generate package-lock.json
+        run: npm i --package-lock-only
+        
+      - name: Install dependencies with package-lock.json
+        run: npm ci
 
       - name: Build Vite + Electron App
         run: |
