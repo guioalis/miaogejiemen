@@ -28,3 +28,12 @@
     "vite": "^5.4.6"
   }
 }
+{
+  "scripts": {
+    "build": "vite build",
+    "electron:build": "electron-builder build --config electron-builder.yml",
+    "electron:package-win": "electron-builder build --win --config electron-builder.yml",
+    "electron:package-mac": "electron-builder build --mac --config electron-builder.yml",
+    "electron:package-linux": "electron-builder build --linux --config electron-builder.yml"
+  }
+}
