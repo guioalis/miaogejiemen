@@ -1,0 +1,72 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*' # 当推送 v 开头的tag时触发，如 v1.0.0
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install -g @electron-forge/cli
+
+      - name: Build Vite + Electron App
+        run: |
+          npm run build
+          npm run electron:build
+
+      # Windows 构建
+      - name: Package Windows App
+        if: matrix.os == 'windows-latest'
+        run: |
+          npm run electron:package-win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # macOS 构建
+      - name: Package macOS App
+        if: matrix.os == 'macos-latest'
+        run: |
+          npm run electron:package-mac
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Linux 构建
+      - name: Package Linux App
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          npm run electron:package-linux
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 创建 Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            dist/*.exe
+            dist/*.dmg
+            dist/*.AppImage
+            dist/*.snap
+            dist/*.deb
+            dist/*.rpm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
