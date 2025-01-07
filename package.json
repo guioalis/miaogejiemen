@@ -7,11 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "electron:build": "electron-builder build --config electron-builder.yml",
-    "electron:package-win": "electron-builder build --win --config electron-builder.yml",
-    "electron:package-mac": "electron-builder build --mac --config electron-builder.yml",
-    "electron:package-linux": "electron-builder build --linux --config electron-builder.yml"
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -21,13 +17,10 @@
     "react-router-dom": "^7.1.1"
   },
   "devDependencies": {
-    "@electron/remote": "^2.1.2",
     "@types/react": "^18.3.6",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
-    "electron": "^29.0.0",
-    "electron-builder": "^24.9.1",
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",

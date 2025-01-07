@@ -91,9 +91,9 @@ export const Chat = ({ theme }: ChatProps) => {
         }));
 
       const response = await axios.post<ApiResponse>(
-        'https://api.deepseek.com/chat/completions',
+        'https://miaoge2024-zhang2025.hf.space/hf/v1/chat/completions',
         {
-          model: "deepseek-chat",
+          model: "gpt-4o",
           messages: [
             {
               role: "system",
@@ -105,12 +105,12 @@ export const Chat = ({ theme }: ChatProps) => {
               content: dream
             }
           ],
-          stream: false
+          temperature: 0.7,
+          max_tokens: 1000
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer sk-276795b35b3449ea81b8f76814b62491'
+            'Content-Type': 'application/json'
           }
         }
       );
